@@ -327,7 +327,7 @@ def run(width=1280, height=720):
     player = tkvideo("ricker_choi.mp4", video_label, loop = 0, size = (1280, 720))
     player.play()
 
-    canvas = Canvas(root, width=data.width, height=data.height, bg='white')
+    canvas = Canvas(root, width=data.width, height=data.height, bg='gray')
     canvas.configure(bd=0, highlightthickness=0)
     canvas.place(x = 0, y = 0, width = 1280, height = 720)
     #canvas.pack()
