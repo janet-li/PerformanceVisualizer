@@ -179,7 +179,7 @@ def timerFired(data):
         # We can update circleTime (how often we place notes on the screen) based on current values
 
         # Q1: High Valence, High Arousal
-        # Shapes should be BIGGER, FASTER, WARM-COLORED and should come out MORE OFTEN; shapes should be POINTIER
+        # Shapes should be LARGER, FASTER, WARM-COLORED and should come out MORE OFTEN; shapes should be POINTIER
         if Q_array[data.infIndex] == 'Q1':
             base_radius = base_radius + 20*quad
             base_speed = base_speed + 20*quad
@@ -187,7 +187,7 @@ def timerFired(data):
             data.circleTime = round((5 + round(10*quad)) / 2)
             base_shape = random.choice([MyLine, MyRectangle])
         # Q2: Low Valence, High Arousal
-        # Shapes should be BIGGER, FASTER, COOL-COLORED and should come out MORE OFTEN; shapes should be POINTIER
+        # Shapes should be LARGER, FASTER, COOL-COLORED and should come out MORE OFTEN; shapes should be POINTIER
         elif Q_array[data.infIndex] == 'Q2':
             base_radius = base_radius + 20*quad
             base_speed = base_speed + 20*quad
@@ -251,12 +251,12 @@ def redrawAll(canvas, data):
     #bg = ImageTk.PhotoImage(file="./test_image.png")
     #canvas.create_image(0,0,image=bg, anchor="nw")
     #w = canvas.create_window(0, 0, height=0, width=0)
-    canvas.create_rectangle(0, 0, data.width, data.height, fill="gray", outline="gray")
+    canvas.create_rectangle(0, 0, data.width, data.height, fill="white", outline="white")
     for shape in data.shapes:
         o = shape.draw(canvas)
         #canvas.itemconfigure(w, window = o)
-    canvas.create_text(data.width/2, data.height, anchor="s", fill="yellow",
-                       font="Arial 24 bold", text="Timer: " + str(data.timer))
+    #canvas.create_text(data.width/2, data.height, anchor="s", fill="yellow",
+                       #font="Arial 24 bold", text="Timer: " + str(data.timer))
 
 def mousePressed(event, data):
     pass
@@ -277,7 +277,7 @@ def run(width=1280, height=720):
         #bg = ImageTk.PhotoImage(file="./test_image.png")
         #canvas.create_image(0,0,image=bg, anchor="nw")
         #w = canvas.create_window(0, 0, height=0, width=0)
-        canvas.create_rectangle(0, 0, data.width, data.height, fill="gray", outline="gray", width=0)                      
+        canvas.create_rectangle(0, 0, data.width, data.height, fill="white", outline="white", width=0)                      
         redrawAll(canvas, data)
         canvas.update()
 
@@ -320,25 +320,26 @@ def run(width=1280, height=720):
     root.wait_visibility()
     '''
 
+    '''
     #Code for the video to play
     video_label = Label(root)
     #video_label.place(x = 0, y = 0, height = 720, width = 1280)
     video_label.pack()
     player = tkvideo("ricker_choi.mp4", video_label, loop = 0, size = (1280, 720))
     player.play()
-
-    canvas = Canvas(root, width=data.width, height=data.height, bg='gray')
-    canvas.configure(bd=0, highlightthickness=0)
-    canvas.place(x = 0, y = 0, width = 1280, height = 720)
-    #canvas.pack()
-
     '''
-    video_label = canvas
-    video_label.place(x = 0, y = 0, height = 720, width = 1280)
-    #video_label.pack(fill=BOTH, expand=True)
+
+    canvas = Canvas(root, width=data.width, height=data.height, bg='white')
+    canvas.configure(bd=0, highlightthickness=0)
+    #canvas.place(x = 0, y = 0, width = 1280, height = 720)
+    canvas.pack()
+
+    #Code for the video to play
+    video_label = Label(root)
+    #video_label.place(x = 0, y = 0, height = 720, width = 1280)
+    video_label.pack()
     player = tkvideo("ricker_choi.mp4", video_label, loop = 0, size = (1280, 720))
     player.play()
-    '''
 
     # set up events
     root.bind("<Button-1>", lambda event:
